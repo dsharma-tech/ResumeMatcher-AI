@@ -1,0 +1,26 @@
+Job Title: Senior Full Stack Engineer (Python/React)
+
+About Us:
+TechnoStream is a fast-growing AI startup building the next generation of predictive analytics tools. We are looking for a Senior Full Stack Engineer to lead our core product development.
+
+Responsibilities:
+- Design and build scalable RESTful APIs using Python (FastAPI/Django).
+- Develop modern, responsive frontends using React, TypeScript, and Tailwind CSS.
+- Integrate LLM-based features using OpenAI or Gemini APIs.
+- Optimize database performance (PostgreSQL/Redis) and ensure high availability.
+- Mentor junior engineers and conduct code reviews.
+- Participate in architectural decisions and CI/CD pipeline improvements.
+
+Requirements:
+- 5+ years of experience in full-stack web development.
+- Strong proficiency in Python and modern JavaScript/TypeScript.
+- Experience with FastAPI or Flask backend frameworks.
+- Deep knowledge of React.js and state management (Redux/Zustand/Context).
+- Familiarity with Cloud platforms (AWS/GCP) and containerization (Docker/Kubernetes).
+- Experience integrating AI/ML models into web applications is a plus.
+- Strong problem-solving skills and ability to work in an agile environment.
+
+Benefits:
+- Competitive salary and equity package.
+- Remote-first culture.
+- Health insurance and wellness stipend.

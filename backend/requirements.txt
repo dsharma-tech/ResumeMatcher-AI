@@ -1,0 +1,10 @@
+google-generativeai
+fastapi
+uvicorn
+python-multipart
+pypdf
+python-docx
+sentence-transformers
+numpy
+scikit-learn
+python-dotenv
