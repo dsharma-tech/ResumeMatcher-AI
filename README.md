@@ -11,7 +11,7 @@ It provides an explainable, multi-component match breakdown using natural langua
 
 ### Key Features
 1. **Keyword Coverage**: Maps technical skills in the resume against job description requirements using a local skill taxonomy.
-2. **Semantic Similarity**: Computes cosine similarity between the resume text and the job description using the `all-MiniLM-L6-v2` SentenceTransformer model.
+2. **Semantic Similarity**: Computes cosine similarity between the resume text and the job description using the `paraphrase-MiniLM-L3-v2` SentenceTransformer model.
 3. **Section Completeness Audit**: Checks for the presence of 6 key resume sections (Education, Skills, Experience, Projects, Certifications, achievements) and calculates a completeness score.
 4. **Experience Compatibility**: Parses complex experience durations (e.g., date ranges, current/present roles) and isolates internship contexts to determine if the candidate meets job tenure requirements.
 5. **PDF Report Exports**: Compiles the breakdown metrics, skill lists, and recommendations list into a printable PDF report.

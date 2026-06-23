@@ -13,7 +13,7 @@ def load_model():
     global model
     if model is None:
         try:
-            model = SentenceTransformer('all-MiniLM-L6-v2')
+            model = SentenceTransformer('paraphrase-MiniLM-L3-v2')
         except Exception as e:
             print(f"Error loading model: {e}")
             raise RuntimeError(f"Failed to load AI model: {e}")
