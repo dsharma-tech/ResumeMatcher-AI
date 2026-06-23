@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semantic Resume Matcher - Results</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    
+    <!-- Header -->
+    <header>
+      <h1 class="nav-title">Semantic Resume <span class="blue-text">Matcher</span></h1>
+    </header>
+
+    <div class="results-grid">
+      
+      <!-- Top Title and Verdict -->
+      <div class="results-header-row">
+        <div>
+          <h2 class="hero-title" style="font-size: 1.25rem;">Analysis Results</h2>
+          <p class="hero-subtitle">Explainable match score analysis based on job requirements.</p>
+        </div>
+        <div>
+          {% if result.score >= 80 %}
+            <span class="verdict-badge bg-green text-green border-green">{{ result.verdict }}</span>
+          {% elif result.score >= 60 %}
+            <span class="verdict-badge bg-amber text-amber border-amber">{{ result.verdict }}</span>
+          {% else %}
+            <span class="verdict-badge bg-red text-red border-red">{{ result.verdict }}</span>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- 4 Summary Metrics Cards -->
+      <div class="metrics-row">
+        <div class="metric-card">
+          <p class="metric-label">Resume Match Score</p>
+          <p class="metric-value blue-text">{{ result.score }}%</p>
+        </div>
+        <div class="metric-card">
+          <p class="metric-label">Keyword Coverage</p>
+          <p class="metric-value text-slate">{{ result.keyword_coverage_percentage }}%</p>
+        </div>
+        <div class="metric-card">
+          <p class="metric-label">Resume Strength</p>
+          <p class="metric-value text-slate">{{ result.resume_strength }}%</p>
+        </div>
+        <div class="metric-card">
+          <p class="metric-label">Semantic Similarity</p>
+          <p class="metric-value text-slate">{{ result.semantic_score }}%</p>
+        </div>
+      </div>
+
+      <!-- Match summary paragraph -->
+      <div class="summary-box">
+        <p>{{ result.summary }}</p>
+      </div>
+
+      <!-- Experience & Education Analysis Grid -->
+      <div class="details-grid">
+        
+        <!-- Experience Analysis Card -->
+        <div class="card flex-column">
+          <h3 class="panel-section-title">Experience Verification</h3>
+          <div class="detail-row">
+            <span class="detail-label">Detected Experience/Internship:</span>
+            <span class="detail-value text-slate">{{ result.internship_duration }}</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Job Requirement:</span>
+            <span class="detail-value text-slate">{{ result.jd_requirement }}</span>
+          </div>
+          <div class="detail-row last">
+            <span class="detail-label">Experience Compatibility:</span>
+            {% if result.experience_compatibility == "Compatible" %}
+              <span class="detail-value text-green">{{ result.experience_compatibility }}</span>
+            {% else %}
+              <span class="detail-value text-red">{{ result.experience_compatibility }}</span>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Education Analysis Card -->
+        <div class="card flex-column">
+          <h3 class="panel-section-title">Education Verification</h3>
+          <div class="detail-row">
+            <span class="detail-label">Education Score:</span>
+            <span class="detail-value text-slate">{{ result.education_score }}%</span>
+          </div>
+          <div class="detail-row last">
+            <span class="detail-label">Education Compatibility:</span>
+            {% if result.education_compatibility == "Compatible" %}
+              <span class="detail-value text-green">{{ result.education_compatibility }}</span>
+            {% else %}
+              <span class="detail-value text-red">{{ result.education_compatibility }}</span>
+            {% endif %}
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Keywords Grid (Matched vs Missing) -->
+      <div class="details-grid">
+        
+        <!-- Matched Keywords Table -->
+        <div class="table-container">
+          <h3 class="panel-section-title green-dot">Matched Keywords</h3>
+          <div class="table-wrapper">
+            <table class="skills-table">
+              <thead>
+                <tr>
+                  <th>Keyword</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% if result.matched_skills %}
+                  {% for skill in result.matched_skills %}
+                    <tr>
+                      <td class="text-green font-bold">{{ skill }}</td>
+                    </tr>
+                  {% endfor %}
+                {% else %}
+                  <tr>
+                    <td class="text-center text-gray">No matched keywords.</td>
+                  </tr>
+                {% endif %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Missing Keywords Table -->
+        <div class="table-container">
+          <h3 class="panel-section-title red-dot">Missing Keywords</h3>
+          <div class="table-wrapper">
+            <table class="skills-table">
+              <thead>
+                <tr>
+                  <th>Keyword</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% if result.missing_skills %}
+                  {% for skill in result.missing_skills %}
+                    <tr>
+                      <td class="text-red font-bold">{{ skill }}</td>
+                    </tr>
+                  {% endfor %}
+                {% else %}
+                  <tr>
+                    <td class="text-center text-gray">No missing keywords.</td>
+                  </tr>
+                {% endif %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Resume Sections Panel -->
+      <div class="sections-panel">
+        <div class="sections-panel-header" style="margin-bottom: 12px;">
+          <h3 class="panel-section-title" style="margin-bottom: 0;">Resume Sections Analysis</h3>
+          <span class="badge bg-blue text-blue font-bold text-xs">Completeness: {{ result.section_score }}%</span>
+        </div>
+        <div class="sections-lists-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div>
+            <h4 class="subpanel-title text-green" style="font-size: 0.7rem; margin-bottom: 6px;">Sections Found ({{ result.sections_found | length }})</h4>
+            <div class="badges-container">
+              {% for sec in result.sections_found %}
+                <span class="badge bg-green">✓ {{ sec }}</span>
+              {% endfor %}
+            </div>
+          </div>
+          <div>
+            <h4 class="subpanel-title text-red" style="font-size: 0.7rem; margin-bottom: 6px;">Missing Sections ({{ result.missing_sections | length }})</h4>
+            <div class="badges-container">
+              {% if result.missing_sections %}
+                {% for sec in result.missing_sections %}
+                  <span class="badge bg-red">✗ {{ sec }}</span>
+                {% endfor %}
+              {% else %}
+                <p class="text-xs text-gray" style="font-style: italic; font-size: 0.75rem;">None - All sections present!</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recommendations Panel -->
+      <div class="recommendations-panel">
+        <h3 class="panel-section-title">Recommendations</h3>
+        <ul class="recommendations-list">
+          {% if result.recommendations %}
+            {% for rec in result.recommendations %}
+              <li>{{ rec }}</li>
+            {% endfor %}
+          {% else %}
+            <li>Ensure your resume contains achievements with quantifiable metrics</li>
+          {% endif %}
+        </ul>
+      </div>
+
+      <!-- Actions Buttons -->
+      <div class="btn-row">
+        <a href="/" class="back-btn">← Match Another Resume</a>
+        <button onclick="downloadPDF()" class="download-btn">
+          <span>Download PDF Report</span>
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    function downloadPDF() {
+      const data = {{ result | tojson }};
+      const btn = document.querySelector('.download-btn');
+      btn.setAttribute('disabled', 'true');
+      btn.textContent = 'Generating PDF...';
+
+      fetch('/api/export-pdf', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+      .then(response => {
+        if (!response.ok) throw new Error("Failed to export PDF");
+        return response.blob();
+      })
+      .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'semantic_resume_match_report.pdf';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        
+        btn.removeAttribute('disabled');
+        btn.textContent = 'Download PDF Report';
+      })
+      .catch(err => {
+        alert("Error exporting PDF: " + err.message);
+        btn.removeAttribute('disabled');
+        btn.textContent = 'Download PDF Report';
+      });
+    }
+  </script>
+</body>
+</html>

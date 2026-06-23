@@ -8,10 +8,10 @@ SKILLS_DB = {
     },
     "tools": {
         "git", "docker", "kubernetes", "aws", "azure", "gcp", "jenkins", "gitlab ci", "github actions", "circleci", "jira", "confluence", "slack", "trello", "asana", "figma", "postman", "swagger", "redis", "mongodb", "postgresql", "mysql", "oracle", "elasticsearch",
-        "excel", "word", "powerpoint", "office suite", "microsoft office", "google workspace", "vlookup", "pivot tables", "spreadsheet"
+        "excel", "word", "powerpoint", "office suite", "microsoft office", "google workspace", "vlookup", "pivot tables", "spreadsheet", "power bi", "powerbi", "tableau"
     },
     "concepts": {
-        "rest api", "graphql", "microservices", "serverless", "ci/cd", "agile", "scrum", "devops", "machine learning", "deep learning", "nlp", "computer vision", "distributed systems", "cloud computing", "big data", "data science", "cybersecurity", "blockchain"
+        "rest api", "graphql", "microservices", "serverless", "ci/cd", "agile", "scrum", "devops", "machine learning", "deep learning", "nlp", "computer vision", "distributed systems", "cloud computing", "big data", "data science", "cybersecurity", "blockchain", "statistics", "data analysis", "dashboarding"
     },
     "soft_skills": {
         "communication", "problem-solving", "problem solving", "time management", "collaboration", "teamwork", "adaptability", "leadership", "critical thinking", "attention to detail", "presentation", "public speaking", "research", "analytical", "organization"

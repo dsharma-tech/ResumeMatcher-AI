@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semantic Resume Matcher</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    
+    <!-- Header -->
+    <header>
+      <h1 class="nav-title">Semantic Resume <span class="blue-text">Matcher</span></h1>
+    </header>
+
+    <!-- Hero Card -->
+    <div class="hero-card">
+      <h2 class="hero-title">Semantic Resume Matcher</h2>
+      <p class="hero-subtitle">Compare resumes with job descriptions using semantic similarity, skill matching, and explainable scoring.</p>
+    </div>
+
+    <!-- Upload Form -->
+    <form action="/results" method="POST" enctype="multipart/form-data">
+      <div class="form-grid">
+        
+        <!-- Left column: file upload -->
+        <div class="card flex-column">
+          <h3 class="card-title">1. Upload Resume</h3>
+          
+          <div class="form-group">
+            <label for="resume">Select Resume (.pdf or .docx):</label>
+            <input type="file" id="resume" name="resume" class="file-input" accept=".pdf,.docx" required>
+          </div>
+          
+          <div class="form-group" style="margin-top: auto; padding-top: 15px;">
+            <button type="submit" id="submit-btn" class="analyze-btn">
+              <span id="btn-text">Analyze Fit</span>
+              <span id="btn-loader" class="loader-spinner" style="display: none;"></span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right column: job description -->
+        <div class="card flex-column">
+          <h3 class="card-title">2. Job Description</h3>
+          <div class="form-group">
+            <textarea id="job_description" name="job_description" class="jd-textarea" placeholder="Paste the Job Description here..." required></textarea>
+          </div>
+        </div>
+
+      </div>
+    </form>
+
+  </div>
+
+  <script>
+    document.querySelector('form').addEventListener('submit', (e) => {
+      const fileInput = document.getElementById('resume');
+      const jdText = document.getElementById('job_description').value.trim();
+      
+      if (!fileInput.files.length || !jdText) {
+        e.preventDefault();
+        alert('Please select a file and paste the job description.');
+        return;
+      }
+      
+      document.getElementById('submit-btn').setAttribute('disabled', 'true');
+      document.getElementById('btn-text').textContent = 'Analyzing Fit...';
+      document.getElementById('btn-loader').style.display = 'block';
+    });
+  </script>
+</body>
+</html>

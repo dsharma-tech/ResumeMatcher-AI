@@ -1,10 +1,12 @@
-google-generativeai
 fastapi
 uvicorn
 python-multipart
 pypdf
 python-docx
 sentence-transformers
-numpy
+numpy<2
 scikit-learn
 python-dotenv
+reportlab
+jinja2
+
