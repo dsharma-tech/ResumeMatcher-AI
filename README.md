@@ -1,3 +1,14 @@
+---
+title: Semantic Resume Matcher
+emoji: 📄
+colorFrom: blue
+colorTo: purple
+sdk: docker
+app_port: 7860
+pinned: false
+license: mit
+---
+
 # ResumeMatcher-AI
 
 AI-Powered Resume & Job Description Matching

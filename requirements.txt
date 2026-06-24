@@ -4,9 +4,9 @@ python-multipart
 pypdf
 python-docx
 sentence-transformers
+torch
 numpy<2
 scikit-learn
 python-dotenv
 reportlab
 jinja2
-
